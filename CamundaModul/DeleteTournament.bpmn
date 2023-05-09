@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1g0owpb" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.8.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.18.0">
+  <bpmn:collaboration id="Collaboration_0g7f00i">
+    <bpmn:participant id="DeleteTournament_participant" name="Delete Tournament" processRef="DeleteTournament_process" />
+  </bpmn:collaboration>
+  <bpmn:process id="DeleteTournament_process" name="Delete Tournament" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_1bepbvf</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:userTask id="Activity_0bpocex" name="Choose Tournament to delete">
+      <bpmn:incoming>Flow_1bepbvf</bpmn:incoming>
+      <bpmn:outgoing>Flow_17tqx3e</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_1bepbvf" sourceRef="StartEvent_1" targetRef="Activity_0bpocex" />
+    <bpmn:sequenceFlow id="Flow_17tqx3e" sourceRef="Activity_0bpocex" targetRef="Activity_10fgco7" />
+    <bpmn:sendTask id="Activity_1ucz9hu" name="Notify participants the tournament was deleted">
+      <bpmn:incoming>Flow_11w12ya</bpmn:incoming>
+      <bpmn:outgoing>Flow_0zt1iz7</bpmn:outgoing>
+    </bpmn:sendTask>
+    <bpmn:sequenceFlow id="Flow_11w12ya" sourceRef="Activity_10fgco7" targetRef="Activity_1ucz9hu" />
+    <bpmn:endEvent id="Event_0wasf0h">
+      <bpmn:incoming>Flow_0zt1iz7</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_0zt1iz7" sourceRef="Activity_1ucz9hu" targetRef="Event_0wasf0h" />
+    <bpmn:serviceTask id="Activity_10fgco7" name="Delete Tournament" camunda:class="com.project.DeleteTournamentDelegate">
+      <bpmn:incoming>Flow_17tqx3e</bpmn:incoming>
+      <bpmn:outgoing>Flow_11w12ya</bpmn:outgoing>
+    </bpmn:serviceTask>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_0g7f00i">
+      <bpmndi:BPMNShape id="Participant_045wbct_di" bpmnElement="DeleteTournament_participant" isHorizontal="true">
+        <dc:Bounds x="129" y="80" width="769" height="250" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="192" y="182" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0bpocex_di" bpmnElement="Activity_0bpocex">
+        <dc:Bounds x="280" y="160" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1ucz9hu_di" bpmnElement="Activity_1ucz9hu">
+        <dc:Bounds x="600" y="160" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0wasf0h_di" bpmnElement="Event_0wasf0h">
+        <dc:Bounds x="762" y="182" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_10fgco7_di" bpmnElement="Activity_10fgco7">
+        <dc:Bounds x="440" y="160" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1bepbvf_di" bpmnElement="Flow_1bepbvf">
+        <di:waypoint x="228" y="200" />
+        <di:waypoint x="280" y="200" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_17tqx3e_di" bpmnElement="Flow_17tqx3e">
+        <di:waypoint x="380" y="200" />
+        <di:waypoint x="440" y="200" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_11w12ya_di" bpmnElement="Flow_11w12ya">
+        <di:waypoint x="540" y="200" />
+        <di:waypoint x="600" y="200" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0zt1iz7_di" bpmnElement="Flow_0zt1iz7">
+        <di:waypoint x="700" y="200" />
+        <di:waypoint x="762" y="200" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
